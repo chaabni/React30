@@ -9,6 +9,8 @@ const React30Logo = (props) => {
       style={{
         ...style,
         backgroundImage: `url(${React30SquareURL})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
         backgroundSize: 'contain',
         width: '100%',
         height: '100%'
