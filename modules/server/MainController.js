@@ -27,9 +27,10 @@ export const sendFeed = (req, res) => {
     generator: 'react30/1.0',
     title: 'React30',
     description: PodcastDescription,
+    language: 'en',
     feed_url: 'https://react30.com/index.xml',
     site_url: 'https://react30.com',
-    image_url: 'https://react30.com/React30Square.png',
+    image_url: 'https://react30.com/React30.png',
     copyright: '2016 React30',
     categories: [ 'Technology' ],
     pubDate: lastEpisode.date,
@@ -48,7 +49,7 @@ export const sendFeed = (req, res) => {
         { 'itunes:email': 'react30podcast@gmail.com' }
       ]},
       { 'itunes:image': {
-        _attr: { href: 'https://react30.com/React30Square.png' }
+        _attr: { href: 'https://react30.com/React30.png' }
       }},
       { 'itunes:category': {
         _attr: { text: 'Technology' }
