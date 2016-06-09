@@ -26,7 +26,7 @@ a:link:hover {
   flex: 1;
 }
 .home-footer {
-  padding-top: 6em;
+  padding: 6em 0 3em;
 }
 
 .react30-logo {
@@ -83,7 +83,6 @@ nav li {
 .twitter-logo {
   width: 40px;
   height: 40px;
-  padding: 1em 0;
   margin: 0 auto;
 }
 .twitter-logo a {
