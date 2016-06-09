@@ -6,7 +6,7 @@ import cookieSession from 'cookie-session'
 import devErrorHandler from 'errorhandler'
 import WebpackDevServer from 'webpack-dev-server'
 import { staticAssets, devAssets, createDevCompiler } from './AssetsUtils'
-import { sendHomePage } from './MainController'
+import { sendFeed, sendHomePage } from './MainController'
 
 const createSession = (config) => {
   const sessionConfig = {
@@ -30,6 +30,7 @@ export const createRouter = (config = {}) => {
 
   router.use(cookieParser())
   router.use(createSession(config))
+  router.get('/index.xml', sendFeed)
   router.get('/', sendHomePage)
 
   return router
