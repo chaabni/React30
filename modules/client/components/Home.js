@@ -8,7 +8,13 @@ const byDateDescending = (a, b) =>
   b.date.getTime() - a.date.getTime()
 
 const Home = (props = {}) => {
-  const { episodes = [] } = props
+  const {
+    episodes = [],
+    iTunesURL = '',
+    RSSURL = '',
+    TwitterURL = '',
+    YouTubeURL = ''
+  } = props
 
   episodes.sort(byDateDescending)
 
@@ -51,15 +57,27 @@ const Home = (props = {}) => {
 
   return (
     <div className="home">
-      <div className="react30-logo">
-        <React30Logo/>
-      </div>
-      <ol className="episode-list">{episodeItems}</ol>
-      <div className="twitter-logo">
-        <a title="Follow React30 on Twitter" href="https://twitter.com/React30">
-          <TwitterLogo/>
-        </a>
-      </div>
+      <section className="home-content">
+        <div className="react30-logo">
+          <React30Logo/>
+        </div>
+        <nav>
+          <ul>
+            <li><a href={iTunesURL} title="Subscribe to React30 on iTunes">iTunes</a></li>
+            <li><a href={YouTubeURL} title="Subscribe to React30 on YouTube">YouTube</a></li>
+            <li><a href={RSSURL} title="Subscribe to React30 via RSS">RSS</a></li>
+            <li><a href={TwitterURL} title="Follow React30 on Twitter">Twitter</a></li>
+          </ul>
+        </nav>
+        <ol className="episode-list">{episodeItems}</ol>
+      </section>
+      <footer className="home-footer">
+        <div className="twitter-logo">
+          <a title="Follow React30 on Twitter" href="https://twitter.com/React30">
+            <TwitterLogo/>
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -1,3 +1,7 @@
+html, body, #app {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font: 14px Helvetica, sans-serif;
@@ -12,19 +16,51 @@ a:link:hover {
   text-decoration: underline;
 }
 
+.home {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+.home-content {
+  flex: 1;
+}
+.home-footer {
+  padding-top: 6em;
+}
+
 .react30-logo {
   width: 300px;
   height: 300px;
-  padding: 2em 0 4em;
-  margin: 0 auto;
+  margin: 2em auto 0;
 }
 
 .episode-list {
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 20px;
   list-style-type: none;
-  padding: 0;
 }
+@media screen and (min-width: 640px) {
+  .episode-list {
+    padding: 0;
+  }
+}
+
+nav {
+  margin-bottom: 6em;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+nav li {
+  display: inline-block;
+  padding: 0 1em;
+}
+
 .episode-list li {
   display: flex;
   margin: 1.5em 0;
@@ -48,11 +84,7 @@ a:link:hover {
   width: 40px;
   height: 40px;
   padding: 1em 0;
-
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -20px;
+  margin: 0 auto;
 }
 .twitter-logo a {
   display: block;

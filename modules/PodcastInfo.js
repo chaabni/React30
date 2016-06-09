@@ -1,7 +1,7 @@
 const createDate = (s) =>
   new Date(Date.parse(s))
 
-export const description = 'A 30-minute podcast about JavaScript and all things React'
+export const description = 'A 30-minute podcast about React and all things JavaScript'
 
 export const episodes = [
   { id: '001',
@@ -15,3 +15,8 @@ export const episodes = [
     type: 'audio/mpeg'
   }
 ]
+
+export const iTunesURL = 'http://itunes.apple.com/us/podcast/react30/id1121818347'
+export const RSSURL = 'https://react30.com/index.xml'
+export const TwitterURL = 'https://twitter.com/react30'
+export const YouTubeURL = 'https://www.youtube.com/channel/UCnyD10-edZmVsplCrF9eA6Q'

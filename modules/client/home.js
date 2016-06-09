@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { episodes } from '../PodcastInfo'
+import * as PodcastInfo from '../PodcastInfo'
 import Home from './components/Home'
 
 render(
-  <Home episodes={episodes}/>,
+  <Home {...PodcastInfo}/>,
   document.getElementById('app')
 )
