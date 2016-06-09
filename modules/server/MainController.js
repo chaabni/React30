@@ -50,11 +50,8 @@ export const sendFeed = (req, res) => {
       { 'itunes:image': {
         _attr: { href: 'https://react30.com/React30Square.png' }
       }},
-      {'itunes:category': {
+      { 'itunes:category': {
         _attr: { text: 'Technology' }
-      }},
-      {'itunes:category': {
-        _attr: { text: 'JavaScript' }
       }}
     ]
   })
