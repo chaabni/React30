@@ -1,0 +1,23 @@
+.date-box {
+  width: 80px;
+  height: 80px;
+  background: #ddd;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.date-box-month {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+}
+.date-box-day {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 32px;
+  color: #d0021b;
+}

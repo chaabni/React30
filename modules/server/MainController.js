@@ -8,6 +8,7 @@ const DOCTYPE = '<!DOCTYPE html>'
 
 export const sendFeed = (req, res) => {
   const lastEpisode = episodes[episodes.length - 1]
+
   const feed = new RSS({
     generator: 'react30/1.0',
     title: 'React30',
@@ -50,7 +51,7 @@ export const sendFeed = (req, res) => {
       guid: `react30/${episode.id}`,
       date: episode.date,
       enclosure: {
-        url: episode.url,
+        url: episode.rawURL,
         size: episode.size,
         type: episode.type
       },
