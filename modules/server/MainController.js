@@ -14,7 +14,7 @@ const PodcastEpisodes = [
     date: createDate('June 6, 2016'),
     title: 'Getting Into React',
     description: 'In this episode, we introduce ourselves, talk about the goals of React30, and discuss how each of us came to React',
-    url: 'https://files.react30.com/001 React30 - Getting Into React.mp3',
+    url: 'http://files.react30.com/001 React30 - Getting Into React.mp3',
     size: 21601323,
     type: 'audio/mpeg',
     iTunesURL: 'https://itunes.apple.com/us/podcast/001-react30-getting-into-react/id1121818347'
