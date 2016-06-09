@@ -1,32 +1,17 @@
 import RSS from 'rss'
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { description, episodes } from '../PodcastInfo'
 import HomePage from './components/HomePage'
 
 const DOCTYPE = '<!DOCTYPE html>'
 
-const createDate = (s) =>
-  new Date(Date.parse(s))
-
-const PodcastDescription = 'A 30-minute podcast about JavaScript and all things React'
-const PodcastEpisodes = [
-  { id: '001',
-    date: createDate('June 6, 2016'),
-    title: 'Getting Into React',
-    description: 'In this episode, we introduce ourselves, talk about the goals of React30, and discuss how each of us came to React',
-    url: 'http://files.react30.com/001 React30 - Getting Into React.mp3',
-    size: 21601323,
-    type: 'audio/mpeg',
-    iTunesURL: 'https://itunes.apple.com/us/podcast/001-react30-getting-into-react/id1121818347'
-  }
-]
-
 export const sendFeed = (req, res) => {
-  const lastEpisode = PodcastEpisodes[PodcastEpisodes.length - 1]
+  const lastEpisode = episodes[episodes.length - 1]
   const feed = new RSS({
     generator: 'react30/1.0',
     title: 'React30',
-    description: PodcastDescription,
+    description: description,
     language: 'en',
     feed_url: 'https://react30.com/index.xml',
     site_url: 'https://react30.com',
@@ -41,7 +26,7 @@ export const sendFeed = (req, res) => {
     custom_elements: [
       { 'itunes:subtitle': 'A React.js podcast in 30 minutes' },
       { 'itunes:author': 'React Training' },
-      { 'itunes:summary': PodcastDescription },
+      { 'itunes:summary': description },
       { 'itunes:block': 'No' },
       { 'itunes:explicit': 'Clean' },
       { 'itunes:owner': [
@@ -57,7 +42,7 @@ export const sendFeed = (req, res) => {
     ]
   })
 
-  PodcastEpisodes.forEach(episode => {
+  episodes.forEach(episode => {
     feed.item({
       title: episode.title,
       description: episode.description,
