@@ -1,4 +1,5 @@
 import React from 'react'
+import { TwitterURL } from '../../PodcastInfo'
 import React30Logo from './React30Logo'
 import TwitterLogo from './TwitterLogo'
 import DateBox from './DateBox'
@@ -73,7 +74,7 @@ const Home = (props = {}) => {
       </section>
       <footer className="home-footer">
         <div className="twitter-logo">
-          <a title="Follow React30 on Twitter" href="https://twitter.com/React30">
+          <a href={TwitterURL} title="Follow React30 on Twitter">
             <TwitterLogo/>
           </a>
         </div>
