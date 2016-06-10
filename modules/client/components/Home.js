@@ -11,9 +11,9 @@ const Home = (props = {}) => {
   const {
     episodes = [],
     iTunesURL = '',
-    RSSURL = '',
     TwitterURL = '',
-    YouTubeURL = ''
+    YouTubeURL = '',
+    FeedURL = ''
   } = props
 
   episodes.sort(byDateDescending)
@@ -45,9 +45,9 @@ const Home = (props = {}) => {
             title={`Watch episode ${episode.id} - ${episode.title} on YouTube`}
           >YouTube</a>
         </div>
-        <div className="episode-raw-link">
+        <div className="episode-mp3-link">
           <a
-            href={episode.rawURL}
+            href={episode.audioURL}
             title={`Listen to episode ${episode.id} - ${episode.title}`}
           >mp3</a>
         </div>
@@ -65,7 +65,7 @@ const Home = (props = {}) => {
           <ul>
             <li><a href={iTunesURL} title="Subscribe to React30 on iTunes">iTunes</a></li>
             <li><a href={YouTubeURL} title="Subscribe to React30 on YouTube">YouTube</a></li>
-            <li><a href={RSSURL} title="Subscribe to React30 via RSS">RSS</a></li>
+            <li><a href={FeedURL} title="Subscribe to React30 via RSS">RSS</a></li>
             <li><a href={TwitterURL} title="Follow React30 on Twitter">Twitter</a></li>
           </ul>
         </nav>

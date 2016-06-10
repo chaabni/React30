@@ -1,72 +1,109 @@
-import RSS from 'rss'
+import xml from 'xml'
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { description, episodes } from '../PodcastInfo'
+import { description, episodes, TwitterURL, FeedURL } from '../PodcastInfo'
 import HomePage from './components/HomePage'
 
 const DOCTYPE = '<!DOCTYPE html>'
 
 export const sendFeed = (req, res) => {
   const lastEpisode = episodes[episodes.length - 1]
+  const generator = 'react30/1.0'
 
-  const feed = new RSS({
-    generator: 'react30/1.0',
-    title: 'React30',
-    description: description,
-    language: 'en',
-    feed_url: 'https://react30.com/index.xml',
-    site_url: 'https://react30.com',
-    image_url: 'https://react30.com/React30.png',
-    copyright: '2016 React30',
-    categories: [ 'Technology' ],
-    pubDate: lastEpisode.date,
-    ttl: 60,
-    custom_namespaces: {
-      'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
-    },
-    custom_elements: [
-      { 'itunes:subtitle': 'A React.js podcast in 30 minutes' },
-      { 'itunes:author': 'React Training' },
-      { 'itunes:summary': description },
-      { 'itunes:block': 'No' },
-      { 'itunes:explicit': 'Clean' },
-      { 'itunes:owner': [
-        { 'itunes:name': 'React Training' },
-        { 'itunes:email': 'react30podcast@gmail.com' }
+  const items = episodes.map(episode => ({
+    item: [
+      { title: `${episode.id} React30 - ${episode.title}` },
+      { link: 'https://react30.com' },
+      { pubDate: episode.date.toGMTString() },
+      { 'dc:creator': 'React30' },
+      { category: 'Technology' },
+      { guid: [
+        { _attr: {
+          isPermalink: false
+        }},
+        `react30/${episode.id}`
       ]},
-      { 'itunes:image': {
-        _attr: { href: 'https://react30.com/React30.png' }
+      { description: {
+        _cdata: `<div><p>${episode.description}</p><p><a href="${TwitterURL}" title="Follow React30 on Twitter">Follow us on Twitter</a></p></div>`
       }},
-      { 'itunes:category': {
-        _attr: { text: 'Technology' }
-      }}
+      { 'content:encoded': {
+        _cdata: `<div><p>${episode.description}</p><p><a href="${TwitterURL}" title="Follow React30 on Twitter">Follow us on Twitter</a></p></div>`
+      }},
+      { enclosure: [
+        { _attr: {
+          url: episode.audioURL,
+          length: episode.size,
+          type: episode.type
+        }}
+      ]},
+      { 'itunes:subtitle': episode.description },
+      { 'itunes:summary': episode.description },
+      { 'itunes:author': 'React Training' },
+      { 'itunes:explicit': 'Clean' },
+      { 'itunes:block': 'No' },
+      { 'itunes:duration': '00:30:00' }
     ]
-  })
+  }))
 
-  episodes.forEach(episode => {
-    feed.item({
-      title: episode.title,
-      description: episode.description,
-      url: 'https://react30.com',
-      guid: `react30/${episode.id}`,
-      date: episode.date,
-      enclosure: {
-        url: episode.rawURL,
-        size: episode.size,
-        type: episode.type
-      },
-      custom_elements: [
-        { 'itunes:subtitle': episode.description },
+  const feed = xml([
+    { rss: [
+      { _attr: {
+        'xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
+        'xmlns:dc': 'http://purl.org/dc/elements/1.1/',
+        'xmlns:atom': 'http://www.w3.org/2005/Atom',
+        'xmlns:itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd',
+        'xmlns:media': 'http://search.yahoo.com/mrss/',
+        'version': '2.0'
+      }},
+      { channel: [
+        { title: 'React30' },
+        { 'atom:link': [
+          { _attr: {
+            href: FeedURL,
+            rel: 'self',
+            type: 'application/rss+xml'
+          }}
+        ]},
+        { link: 'https://react30.com' },
+        { description: description },
+        { pubDate: lastEpisode.date.toGMTString() },
+        { generator: generator },
+        { language: 'en' },
+        { copyright: '2016 React30' },
+        { category: 'Technology' },
+        { ttl: 60 },
+        { 'itunes:subtitle': description },
+        { 'itunes:summary': description },
         { 'itunes:author': 'React Training' },
-        { 'itunes:explicit': 'Clean' },
+        { 'itunes:category': [
+          { _attr: {
+            text: 'Technology'
+          }}
+        ]},
+        { 'itunes:owner': [
+          { 'itunes:name': 'React Training' },
+          { 'itunes:email': 'react30podcast@gmail.com' }
+        ]},
         { 'itunes:block': 'No' },
-        { 'itunes:duration': '00:30:00' }
-      ]
-    })
-  })
+        { 'itunes:explicit': 'Clean' },
+        { 'itunes:image': [
+          { _attr: {
+            href: 'https://react30.com/React30.png'
+          }}
+        ]},
+        { image: [
+          { url: 'https://react30.com/React30.png' },
+          { title: 'React30' },
+          { link: 'https://react30.com' },
+          { width: 2048 },
+          { height: 2048 }
+        ]},
+        ...items
+      ]}
+    ]}
+  ])
 
-  res.type('text/xml; charset=UTF-8')
-     .send(feed.xml({ indent: true }))
+  res.type('text/xml; charset=UTF-8').send(feed)
 }
 
 export const sendHomePage = (req, res) => {
