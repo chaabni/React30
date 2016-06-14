@@ -27,31 +27,31 @@ const Home = (props = {}) => {
       <div className="episode-info">
         <h2>
           <a
-            href={episode.iTunesURL}
-            title={`Listen to episode ${episode.id} - ${episode.title} on iTunes`}
+            href={episode.iTunesURL || episode.YouTubeURL || episode.audioURL}
+            title={`Episode ${episode.id} - ${episode.title}`}
           >{episode.id} &mdash; {episode.title}</a>
         </h2>
         <p>{episode.description}</p>
       </div>
       <div className="episode-links">
-        <div className="episode-itunes-link">
+        {episode.iTunesURL && <div className="episode-itunes-link">
           <a
             href={episode.iTunesURL}
             title={`Listen to episode ${episode.id} - ${episode.title} on iTunes`}
           >iTunes</a>
-        </div>
-        <div className="episode-youtube-link">
+        </div>}
+        {episode.YouTubeURL && <div className="episode-youtube-link">
           <a
             href={episode.YouTubeURL}
             title={`Watch episode ${episode.id} - ${episode.title} on YouTube`}
           >YouTube</a>
-        </div>
-        <div className="episode-mp3-link">
+        </div>}
+        {episode.audioURL && <div className="episode-mp3-link">
           <a
             href={episode.audioURL}
             title={`Listen to episode ${episode.id} - ${episode.title}`}
           >mp3</a>
-        </div>
+        </div>}
       </div>
     </li>
   ))
