@@ -32,6 +32,6 @@ export const episodes = [
 ].sort(byDateDescending)
 
 export const iTunesURL = 'http://itunes.apple.com/us/podcast/react30/id1121818347'
-export const TwitterURL = 'https://twitter.com/react30'
+export const TwitterURL = 'https://twitter.com/React30'
 export const YouTubeURL = 'https://www.youtube.com/channel/UCnyD10-edZmVsplCrF9eA6Q'
 export const FeedURL = 'https://react30.com/index.xml'
