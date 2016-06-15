@@ -41,7 +41,7 @@ export const sendFeed = (req, res) => {
       { 'itunes:author': 'React Training' },
       { 'itunes:explicit': 'Clean' },
       { 'itunes:block': 'No' },
-      { 'itunes:duration': '00:30:00' }
+      { 'itunes:duration': episode.duration }
     ]
   }))
 

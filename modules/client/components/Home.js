@@ -1,12 +1,8 @@
 import React from 'react'
-import { TwitterURL } from '../../PodcastInfo'
 import React30Logo from './React30Logo'
 import TwitterLogo from './TwitterLogo'
 import DateBox from './DateBox'
 import './Home.css'
-
-const byDateDescending = (a, b) =>
-  b.date.getTime() - a.date.getTime()
 
 const Home = (props = {}) => {
   const {
@@ -16,8 +12,6 @@ const Home = (props = {}) => {
     YouTubeURL = '',
     FeedURL = ''
   } = props
-
-  episodes.sort(byDateDescending)
 
   const episodeItems = episodes.map(episode => (
     <li key={episode.id}>
