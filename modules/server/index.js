@@ -1,16 +1,19 @@
 /*eslint-disable no-console*/
+import http from 'http'
+import throng from 'throng'
 import morgan from 'morgan'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import cookieSession from 'cookie-session'
 import devErrorHandler from 'errorhandler'
 import WebpackDevServer from 'webpack-dev-server'
+import * as DefaultServerConfig from './ServerConfig'
 import { staticAssets, devAssets, createDevCompiler } from './AssetsUtils'
 import { sendFeed, sendHomePage } from './MainController'
 
 const createSession = (config) => {
   const sessionConfig = {
-    name: `sess_${process.env.NODE_ENV}`,
+    name: `sess_${process.env.NODE_ENV}`
   }
 
   if (config.sessionDomain)
@@ -46,12 +49,34 @@ export const createServer = (config) => {
   const app = express()
 
   app.disable('x-powered-by')
+
   app.use(errorHandler)
   app.use(express.static(config.publicDir))
   app.use(staticAssets(config.statsFile))
   app.use(createRouter(config))
 
-  return app
+  const server = http.createServer(app)
+
+  // Heroku dynos automatically timeout after 30s. Set our
+  // own timeout here to force sockets to close before that.
+  // https://devcenter.heroku.com/articles/request-timeout
+  if (config.timeout) {
+    server.setTimeout(config.timeout, (socket) => {
+      const message = `Timeout of ${config.timeout}ms exceeded`
+
+      socket.end([
+        `HTTP/1.1 503 Service Unavailable`,
+        `Date: ${(new Date).toGMTString()}`,
+        `Content-Type: text/plain`,
+        `Content-Length: ${message.length}`,
+        `Connection: close`,
+        ``,
+        message
+      ].join(`\r\n`))
+    })
+  }
+
+  return server
 }
 
 export const createDevServer = (config) => {
@@ -93,3 +118,25 @@ export const createDevServer = (config) => {
 
   return server
 }
+
+export const startServer = (serverConfig) => {
+  const config = {
+    ...DefaultServerConfig,
+    ...serverConfig
+  }
+
+  const server = process.env.NODE_ENV === 'production'
+    ? createServer(config)
+    : createDevServer(config)
+
+  server.listen(config.port, () => {
+    console.log('Server #%s listening on port %s, Ctrl+C to stop', config.id, config.port)
+  })
+}
+
+if (require.main === module)
+  throng({
+    start: (id) => startServer({ id }),
+    workers: process.env.WEB_CONCURRENCY || 1,
+    lifetime: Infinity
+  })
