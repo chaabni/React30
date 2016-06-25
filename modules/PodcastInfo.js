@@ -21,12 +21,23 @@ export const episodes = [
   { id: '002',
     date: createDate('June 14, 2016'),
     title: 'Streaming React',
-    description: 'Our guest in this episode is Sasha Aickin, recently-retired CTO of Redfin and author of react-dom-stream and several pull requests that enable streaming rendering in React core',
+    description: 'Our guest in this episode is <a href="https://twitter.com/xander76">Sasha Aickin</a>, recently-retired CTO of Redfin and author of react-dom-stream and several pull requests that enable streaming rendering in React core',
     audioURL: 'http://files.react30.com/002_React30_-_Streaming_React.mp3',
     iTunesURL: 'https://itunes.apple.com/us/podcast/002-react30-streaming-react/id1121818347',
     YouTubeURL: 'https://www.youtube.com/watch?v=XW_c60NCkI4',
     duration: '00:30:00',
     size: 28801433,
+    type: 'audio/mpeg'
+  },
+  { id: '003',
+    date: createDate('June 24, 2016'),
+    title: 'React Rally',
+    description: 'Our guests in this episode are Jamison Dance and Matt Zabriskie, OSS contributors and organizers of React Rally',
+    htmlDescription: 'Our guests in this episode are <a href="https://twitter.com/jergason">Jamison Dance</a> and <a href="https://twitter.com/mzabriskie">Matt Zabriskie</a>, OSS contributors and organizers of <a href="http://www.reactrally.com/">React Rally</a>',
+    audioURL: 'http://files.react30.com/003_React30_React_Rally.mp3',
+    YouTubeURL: 'https://www.youtube.com/watch?v=fwT9kHOkig8',
+    duration: '00:30:45',
+    size: 22150453,
     type: 'audio/mpeg'
   }
 ].sort(byDateDescending)
