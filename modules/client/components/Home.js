@@ -25,7 +25,7 @@ const Home = (props = {}) => {
             title={`Episode ${episode.id} - ${episode.title}`}
           >{episode.id} &mdash; {episode.title}</a>
         </h2>
-        <p dangerouslySetInnerHTML={{ __html: episode.htmlDescription || episode.description }}/>
+        <p dangerouslySetInnerHTML={{ __html: episode.descriptionHTML || episode.description }}/>
       </div>
       <div className="episode-links">
         {episode.YouTubeURL && <div className="episode-youtube-link">
