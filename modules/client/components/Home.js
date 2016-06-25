@@ -21,19 +21,13 @@ const Home = (props = {}) => {
       <div className="episode-info">
         <h2>
           <a
-            href={episode.iTunesURL || episode.YouTubeURL || episode.audioURL}
+            href={episode.YouTubeURL || episode.audioURL}
             title={`Episode ${episode.id} - ${episode.title}`}
           >{episode.id} &mdash; {episode.title}</a>
         </h2>
         <p dangerouslySetInnerHTML={{ __html: episode.htmlDescription || episode.description }}/>
       </div>
       <div className="episode-links">
-        {episode.iTunesURL && <div className="episode-itunes-link">
-          <a
-            href={episode.iTunesURL}
-            title={`Listen to episode ${episode.id} - ${episode.title} on iTunes`}
-          >iTunes</a>
-        </div>}
         {episode.YouTubeURL && <div className="episode-youtube-link">
           <a
             href={episode.YouTubeURL}
