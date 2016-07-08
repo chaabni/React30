@@ -50,6 +50,17 @@ export const episodes = [
     duration: '00:31:29',
     size: 22673636,
     type: 'audio/mpeg'
+  },
+  { id: '005',
+    date: createDate('July 7, 2016'),
+    title: 'Preact',
+    description: 'Preact is a fast, tiny alternative to React that shares its ES6 API. In this episode, we chat with the author of Preact, Jason Miller',
+    descriptionHTML: '<a href="https://preactjs.com/">Preact</a> is a fast, tiny alternative to React that shares its ES6 API. In this episode, we chat with the author of Preact, <a href="https://twitter.com/_developit">Jason Miller</a>',
+    audioURL: 'http://files.react30.com/005_React30_Preact.mp3',
+    YouTubeURL: 'https://www.youtube.com/watch?v=ETjTVV4qGoY',
+    duration: '00:30:50',
+    size: 22201543,
+    type: 'audio/mpeg'
   }
 ].sort(byDateDescending)
 
