@@ -61,6 +61,17 @@ export const episodes = [
     duration: '00:30:50',
     size: 22201543,
     type: 'audio/mpeg'
+  },
+  { id: '006',
+    date: createDate('July 13, 2016'),
+    title: 'Origins of React',
+    description: 'In this episode we chat with Jordan Walke, the creator of React, about how it came to be',
+    descriptionHTML: 'In this episode we chat with <a href="https://twitter.com/jordwalke">Jordan Walke</a>, the creator of <a href="https://facebook.github.io/react">React</a>, about how it came to be',
+    audioURL: 'http://files.react30.com/006_React30_Origins_of_React.mp3',
+    YouTubeURL: 'https://www.youtube.com/watch?v=yiCnfJ1rflI',
+    duration: '00:33:16',
+    size: 23951026,
+    type: 'audio/mpeg'
   }
 ].sort(byDateDescending)
 
