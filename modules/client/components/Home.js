@@ -7,7 +7,7 @@ import './Home.css'
 const Home = (props = {}) => {
   const {
     episodes = [],
-    GuestListURL = '',
+    FriendsURL = '',
     iTunesURL = '',
     TwitterURL = '',
     YouTubeURL = '',
@@ -57,7 +57,7 @@ const Home = (props = {}) => {
             <li><a href={YouTubeURL} title="Subscribe to React30 on YouTube">YouTube</a></li>
             <li><a href={FeedURL} title="Subscribe to React30 via RSS">RSS</a></li>
             <li><a href={TwitterURL} title="Follow React30 on Twitter">Twitter</a></li>
-            <li><a href={GuestListURL} title="Guests on React30">Guests</a></li>
+            <li><a href={FriendsURL} title="The people who make React30">Friends</a></li>
           </ul>
         </nav>
         <ol className="episode-list">{episodeItems}</ol>
