@@ -72,6 +72,17 @@ export const episodes = [
     duration: '00:33:16',
     size: 23951026,
     type: 'audio/mpeg'
+  },
+  { id: '007',
+    date: createDate('July 19, 2016'),
+    title: 'Testing React with Enzyme',
+    description: 'Enzyme is a helper for testing React components that provides a jQuery-like interface to traversing virtual DOM hierarchies. In this episode, we sit down with its author, Leland Richardson',
+    description: '<a href="https://github.com/airbnb/enzyme">Enzyme</a> is a helper for testing React components that provides a jQuery-like interface to traversing virtual DOM hierarchies. In this episode, we sit down with its author, <a href="https://twitter.com/intelligibabble">Leland Richardson</a>',
+    audioURL: 'http://files.react30.com/007_React30_Testing_React_with_Enzyme.mp3',
+    YouTubeURL: 'https://www.youtube.com/watch?v=bYKM9i0TDQA',
+    duration: '00:31:01',
+    size: 22338235,
+    type: 'audio/mpeg'
   }
 ].sort(byDateDescending)
 
