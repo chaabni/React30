@@ -3,36 +3,15 @@ import http from 'http'
 import throng from 'throng'
 import morgan from 'morgan'
 import express from 'express'
-import cookieParser from 'cookie-parser'
-import cookieSession from 'cookie-session'
 import devErrorHandler from 'errorhandler'
 import WebpackDevServer from 'webpack-dev-server'
 import * as DefaultServerConfig from './ServerConfig'
-import { staticAssets, devAssets, createDevCompiler } from './AssetsUtils'
+import { assetsManifest, staticAssets, devAssets, createDevCompiler } from './AssetsUtils'
 import { sendFeed, sendHomePage } from './MainController'
 
-const createSession = (config) => {
-  const sessionConfig = {
-    name: `sess_${process.env.NODE_ENV}`
-  }
-
-  if (config.sessionDomain)
-    sessionConfig.domain = config.sessionDomain
-
-  if (config.sessionSecret) {
-    sessionConfig.secret = config.sessionSecret
-  } else {
-    sessionConfig.signed = false
-  }
-
-  return cookieSession(sessionConfig)
-}
-
-export const createRouter = (config = {}) => {
+export const createRouter = () => {
   const router = express.Router()
 
-  router.use(cookieParser())
-  router.use(createSession(config))
   router.get('/index.xml', sendFeed)
   router.get('/', sendHomePage)
 
@@ -51,7 +30,8 @@ export const createServer = (config) => {
   app.disable('x-powered-by')
 
   app.use(errorHandler)
-  app.use(express.static(config.publicDir))
+  app.use(express.static(config.publicDir, { maxAge: config.maxAge }))
+  app.use(assetsManifest(config.manifestFile))
   app.use(staticAssets(config.statsFile))
   app.use(createRouter(config))
 

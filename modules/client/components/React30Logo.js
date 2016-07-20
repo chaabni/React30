@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import React30SquareURL from '../React30Square.png'
 
-const React30Logo = (props) => {
-  const { style } = props
+class React30Logo extends React.Component {
+  static propTypes = {
+    style: PropTypes.object
+  }
 
-  return (
-    <div {...props}
-      style={{
-        ...style,
-        backgroundImage: `url(${React30SquareURL})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundSize: 'contain',
-        width: '100%',
-        height: '100%'
-      }}
-    />
-  )
+  render() {
+    const { style } = this.props
+
+    return (
+      <div {...this.props}
+        style={{
+          ...style,
+          backgroundImage: `url(${React30SquareURL})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          backgroundSize: 'contain',
+          width: '100%',
+          height: '100%'
+        }}
+      />
+    )
+  }
 }
 
 export default React30Logo
