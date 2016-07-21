@@ -68,8 +68,7 @@ class Home extends React.Component {
               <li><a href={iTunesURL} title="Subscribe to React30 on iTunes">iTunes</a></li>
               <li><a href={YouTubeURL} title="Subscribe to React30 on YouTube">YouTube</a></li>
               <li><a href={FeedURL} title="Subscribe to React30 via RSS">RSS</a></li>
-              <li><a href={TwitterURL} title="Follow React30 on Twitter">Twitter</a></li>
-              <li><a href={FriendsURL} title="The people who make React30">Friends</a></li>
+              <li><a href={FriendsURL} title="The people behind React30">Friends</a></li>
             </ul>
           </nav>
           <ol className="episode-list">{episodeItems}</ol>
