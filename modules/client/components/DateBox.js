@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import './DateBox.css'
 
-const ShortMonths = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ').map(s => s.toUpperCase())
+const ShortMonths = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ')
 
 const padLeft = (n, length) => {
   let s = n.toString()
@@ -24,7 +24,7 @@ class DateBox extends React.Component {
 
     return (
       <div className="date-box">
-        <div className="date-box-month">{month}</div>
+        <div className="date-box-month">{month.toUpperCase()}</div>
         <div className="date-box-day">{day}</div>
       </div>
     )
