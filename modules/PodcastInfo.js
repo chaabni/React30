@@ -77,11 +77,22 @@ export const episodes = [
     date: createDate('July 19, 2016'),
     title: 'Enzyme',
     description: 'Enzyme is a helper for testing React components that provides a jQuery-like interface to traversing virtual DOM hierarchies. In this episode, we sit down with its author, Leland Richardson',
-    description: '<a href="https://github.com/airbnb/enzyme">Enzyme</a> is a helper for testing React components that provides a jQuery-like interface to traversing virtual DOM hierarchies. In this episode, we sit down with its author, <a href="https://twitter.com/intelligibabble">Leland Richardson</a>',
+    descriptionHTML: '<a href="https://github.com/airbnb/enzyme">Enzyme</a> is a helper for testing React components that provides a jQuery-like interface to traversing virtual DOM hierarchies. In this episode, we sit down with its author, <a href="https://twitter.com/intelligibabble">Leland Richardson</a>',
     audioURL: 'http://files.react30.com/007_React30_Testing_React_with_Enzyme.mp3',
     YouTubeURL: 'https://www.youtube.com/watch?v=bYKM9i0TDQA',
     duration: '00:31:01',
     size: 22338235,
+    type: 'audio/mpeg'
+  },
+  { id: '008',
+    date: createDate('July 26, 2016'),
+    title: 'Draft.js Plugins',
+    description: 'Draft.js Plugins is a React community effort to create a set of high-quality plugins for Draft.js, the rich text editor framework for React, built by our guest Nik Graf',
+    descriptionHTML: '<a href="https://www.draft-js-plugins.com/">Draft.js Plugins</a> is a React community effort to create a set of high-quality plugins for <a href="https://facebook.github.io/draft-js/">Draft.js</a>, the rich text editor framework for React, built by our guest <a href="https://twitter.com/nikgraf">Nik Graf</a>',
+    audioURL: 'http://files.react30.com/008_React30_Draft_js_Plugins.mp3',
+    YouTubeURL: 'https://www.youtube.com/watch?v=w-PqnpMizcQ',
+    duration: '00:33:19',
+    size: 23997106,
     type: 'audio/mpeg'
   }
 ].sort(byDateDescending)
